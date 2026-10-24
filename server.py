@@ -19,12 +19,16 @@ def sent_detector():
     dominant_emotion = response["dominant_emotion"]
     # format it as string
     emotions_str = ', '.join(emotions[:-1]) + ' and ' + emotions[-1]
+    # Return invalid in case dominant_emotion is None
+    if dominant_emotion is None:
+        return "Invalid text! Please try again!."
+    else:
     # Return a formatted string with the sentiment label and score
-    return (
-        f"For the given statement, the system response is "
-        f"{emotions_str}. "
-        f"The dominant emotion is {dominant_emotion}."
-    )
+        return (
+            f"For the given statement, the system response is "
+            f"{emotions_str}. "
+            f"The dominant emotion is {dominant_emotion}."
+        )
 
 @app.route("/")
 def render_index_page():
